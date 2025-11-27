@@ -8,7 +8,7 @@
 export function calculateQLDHomeWarrantyPremium(insurableValue: number): number {
   // Input validation
   if (typeof insurableValue !== "number" || isNaN(insurableValue) || insurableValue < 0) {
-    throw new Error("Insurable value must be a positive number")
+    return 0;
   }
 
   // Handle values below minimum threshold - minimum insurable value is $3,300
@@ -1199,7 +1199,7 @@ export function calculateMultipleDwellingsPremium(totalInsurableValue: number, n
 export function calculateQLDRenovationPremium(insurableValue: number): number {
   // Input validation
   if (typeof insurableValue !== "number" || isNaN(insurableValue) || insurableValue < 0) {
-    throw new Error("Insurable value must be a positive number")
+    return 0;
   }
 
   // Handle values below minimum threshold - minimum insurable value is $3,300
@@ -1512,7 +1512,7 @@ export function calculateQLDRenovationPremium(insurableValue: number): number {
   }
 
   // Find the entries that bracket the insurable value for interpolation
-  // Initialize with minimum and maximum entries
+  // Initialize with minimum and maximum entries from the table
   let lowerEntry = null
   let upperEntry = null
 
@@ -1567,4 +1567,31 @@ export function calculateMultipleUnitsPremium(totalInsurableValue: number, numbe
 
   // Return total premium
   return premiumPerUnit * numberOfUnits
+}
+
+/**
+ * Calculates the QLeave Levy for Queensland building and construction work.
+ * The levy is 0.575% of the total cost of work (GST exclusive), applicable if the
+ * total cost of work is $150,000 (GST exclusive) or more.
+ *
+ * @param {number} insurableValue - The insurable value in dollars (assumed GST Inclusive)
+ * @returns {number} The calculated levy in dollars
+ */
+export function calculateQLeaveLevy(insurableValue: number): number {
+  // Input validation
+  if (typeof insurableValue !== "number" || isNaN(insurableValue) || insurableValue < 0) {
+    return 0;
+  }
+
+  // Calculate GST exclusive value
+  const gstExclusiveValue = insurableValue / 1.1;
+
+  // Threshold: $150,000 (GST Exclusive)
+  if (gstExclusiveValue < 150000) {
+    return 0;
+  }
+
+  // Levy Rate: 0.575% of the GST exclusive cost of work
+  // 0.35% (Portable Long Service Leave) + 0.125% (WHS) + 0.1% (Construction Skills) = 0.575%
+  return gstExclusiveValue * 0.00575;
 }

@@ -1,0 +1,15 @@
+
+> qbcc-calculator@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.16
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 741ms
+ ○ Compiling /estimate/[type]/[value] ...
+ ✓ Compiled /estimate/[type]/[value] in 1016ms (566 modules)
+ ✓ Compiled in 91ms (266 modules)
+ GET /estimate/new-construction/300000 200 in 1294ms
+ ✓ Compiled /icon.svg in 81ms (331 modules)
+ GET /icon.svg?9e12960db5f9df69 200 in 115ms

@@ -1,0 +1,24 @@
+
+> qbcc-calculator@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.16
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 734ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1212ms (1137 modules)
+ ⨯ components/calculator-form.tsx (114:12) @ Card
+ ⨯ ReferenceError: Card is not defined
+    at CalculatorForm (./components/calculator-form.tsx:123:105)
+digest: "3596683133"
+[0m [90m 112 |[39m         {[90m/* Form Section */[39m}[0m
+[0m [90m 113 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"lg:col-span-2 space-y-6"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 114 |[39m           [33m<[39m[33mCard[39m[33m>[39m[0m
+[0m [90m     |[39m            [31m[1m^[22m[39m[0m
+[0m [90m 115 |[39m             [33m<[39m[33mCardHeader[39m[33m>[39m[0m
+[0m [90m 116 |[39m               [33m<[39m[33mdiv[39m className[33m=[39m[32m"flex items-center gap-3"[39m[33m>[39m[0m
+[0m [90m 117 |[39m                 [33m<[39m[33mdiv[39m className[33m=[39m[32m"p-2 bg-leva-navy/5 rounded-lg text-leva-navy"[39m[33m>[39m[0m
+ GET / 500 in 1410ms
+ ✓ Compiled in 228ms (570 modules)

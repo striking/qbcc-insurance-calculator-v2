@@ -16,20 +16,10 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ['DM Sans', 'sans-serif'],
+    },
     extend: {
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: "none",
-            a: {
-              color: "hsl(var(--primary))",
-              "&:hover": {
-                color: "hsl(var(--primary-foreground))",
-              },
-            },
-          },
-        },
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -64,6 +54,23 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        leva: {
+          navy: '#1E3A5F',
+          'navy-light': '#2A4B78',
+          'navy-deep': '#152A45',
+          orange: '#FF6B35',
+          'orange-light': '#FF8A5F',
+          'orange-pale': '#FFF0EB',
+          grey: '#2D3748',
+          'grey-light': '#718096',
+          'grey-pale': '#F7FAFC',
+        },
+        semantic: {
+          success: '#059669',
+          error: '#C53030',
+          info: '#2B6CB0',
+          warning: '#D97706',
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -84,7 +91,13 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      backgroundImage: {
+      }
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("tailwindcss-animate"), 
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms")
+  ],
 }

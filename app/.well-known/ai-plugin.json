@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "QBCC Insurance Calculator",
+  "name_for_model": "qbcc_insurance_calculator",
+  "description_for_human": "Calculate Queensland Home Warranty Insurance premiums and QLeave levies.",
+  "description_for_model": "Plugin for calculating QBCC Home Warranty Insurance premiums and QLeave levies for construction work in Queensland, Australia. Use this to get accurate cost estimates for new builds and renovations based on insurable value.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://qbcc-calculator.vercel.app/openapi.yaml"
+  },
+  "logo_url": "https://qbcc-calculator.vercel.app/icon.png",
+  "contact_email": "hello@levasolutions.com.au",
+  "legal_info_url": "https://levasolutions.com.au/privacy"
+}

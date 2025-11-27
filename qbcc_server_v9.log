@@ -1,0 +1,13 @@
+
+> qbcc-calculator@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.16
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 842ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1371ms (1171 modules)
+ GET / 200 in 1659ms
+ ✓ Compiled in 315ms (587 modules)

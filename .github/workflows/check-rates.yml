@@ -1,0 +1,25 @@
+name: Check Rate Updates
+
+on:
+  schedule:
+    # Run every Monday at 9am AEST (Sunday 11pm UTC)
+    - cron: '0 23 * * 0'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-rates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Rate Check Script
+        run: |
+          npm install -g ts-node
+          npx ts-node scripts/check-rates.ts
+        working-directory: ./qbcc-insurance-calculator

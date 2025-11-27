@@ -1,0 +1,74 @@
+
+> qbcc-calculator@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.16
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 704ms
+ ○ Compiling / ...
+ ⨯ ./components/catalyst/button.tsx
+Error: 
+  [31mx[0m Expected ',', got 'borderRadius'
+    ,-[[36;1;4m/Users/chrisohalloran/dev/levasolutions/qbcc-insurance-calculator/components/catalyst/button.tsx[0m:22:1]
+ [2m22[0m |     // Dark mode: border is rendered on `after` so background is set to button background
+ [2m23[0m |     'dark:bg-[--btn-bg]',
+ [2m24[0m |     // Button background, implemented as foreground layer to stack on top of pseudo-border layer
+ [2m25[0m |     'before:absolute before:inset-0 before:-z-10 before:rounded-[calc(theme('borderRadius.lg')-1px)] before:bg-[--btn-bg]',
+    : [31;1m                                                                             ^^^^^^^^^^^^[0m
+ [2m26[0m |     // Drop shadow, applied to the inset `before` layer so it blends with the border
+ [2m27[0m |     'before:shadow-sm',
+ [2m28[0m |     // Background color is moved to control and shadow is removed in dark mode so hide `before` pseudo
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/catalyst/button.tsx
+./components/calculator-form.tsx
+./app/page.tsx
+ ⨯ ./components/catalyst/button.tsx
+Error: 
+  [31mx[0m Expected ',', got 'borderRadius'
+    ,-[[36;1;4m/Users/chrisohalloran/dev/levasolutions/qbcc-insurance-calculator/components/catalyst/button.tsx[0m:22:1]
+ [2m22[0m |     // Dark mode: border is rendered on `after` so background is set to button background
+ [2m23[0m |     'dark:bg-[--btn-bg]',
+ [2m24[0m |     // Button background, implemented as foreground layer to stack on top of pseudo-border layer
+ [2m25[0m |     'before:absolute before:inset-0 before:-z-10 before:rounded-[calc(theme('borderRadius.lg')-1px)] before:bg-[--btn-bg]',
+    : [31;1m                                                                             ^^^^^^^^^^^^[0m
+ [2m26[0m |     // Drop shadow, applied to the inset `before` layer so it blends with the border
+ [2m27[0m |     'before:shadow-sm',
+ [2m28[0m |     // Background color is moved to control and shadow is removed in dark mode so hide `before` pseudo
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/catalyst/button.tsx
+./components/calculator-form.tsx
+./app/page.tsx
+ ⨯ ./components/catalyst/button.tsx
+Error: 
+  [31mx[0m Expected ',', got 'borderRadius'
+    ,-[[36;1;4m/Users/chrisohalloran/dev/levasolutions/qbcc-insurance-calculator/components/catalyst/button.tsx[0m:22:1]
+ [2m22[0m |     // Dark mode: border is rendered on `after` so background is set to button background
+ [2m23[0m |     'dark:bg-[--btn-bg]',
+ [2m24[0m |     // Button background, implemented as foreground layer to stack on top of pseudo-border layer
+ [2m25[0m |     'before:absolute before:inset-0 before:-z-10 before:rounded-[calc(theme('borderRadius.lg')-1px)] before:bg-[--btn-bg]',
+    : [31;1m                                                                             ^^^^^^^^^^^^[0m
+ [2m26[0m |     // Drop shadow, applied to the inset `before` layer so it blends with the border
+ [2m27[0m |     'before:shadow-sm',
+ [2m28[0m |     // Background color is moved to control and shadow is removed in dark mode so hide `before` pseudo
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/catalyst/button.tsx
+./components/calculator-form.tsx
+./app/page.tsx
+ GET / 500 in 3281ms

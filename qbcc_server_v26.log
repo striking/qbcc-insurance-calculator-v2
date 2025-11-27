@@ -1,0 +1,71 @@
+
+> qbcc-calculator@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.16
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 725ms
+ ○ Compiling /estimate/[type]/[value] ...
+ ⨯ ./components/quote-template.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4m/Users/chrisohalloran/dev/levasolutions/qbcc-insurance-calculator/components/quote-template.tsx[0m:20:1]
+ [2m20[0m |   date = new Date() 
+ [2m21[0m | }: QuoteTemplateProps) {
+ [2m22[0m |   return (
+ [2m23[0m |     <div className="p-8 max-w-[210mm] mx-auto bg-white text-black h-full min-h-screen">
+    : [31;1m     ^^^[0m
+ [2m24[0m |         {/* Header */}
+ [2m25[0m |         <div className="flex justify-between items-start mb-12 border-b pb-6 border-gray-200">
+ [2m26[0m |           <div>
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/quote-template.tsx
+./app/estimate/[type]/[value]/page.tsx
+ ⨯ ./components/quote-template.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4m/Users/chrisohalloran/dev/levasolutions/qbcc-insurance-calculator/components/quote-template.tsx[0m:20:1]
+ [2m20[0m |   date = new Date() 
+ [2m21[0m | }: QuoteTemplateProps) {
+ [2m22[0m |   return (
+ [2m23[0m |     <div className="p-8 max-w-[210mm] mx-auto bg-white text-black h-full min-h-screen">
+    : [31;1m     ^^^[0m
+ [2m24[0m |         {/* Header */}
+ [2m25[0m |         <div className="flex justify-between items-start mb-12 border-b pb-6 border-gray-200">
+ [2m26[0m |           <div>
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/quote-template.tsx
+./app/estimate/[type]/[value]/page.tsx
+ ⨯ ./components/quote-template.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4m/Users/chrisohalloran/dev/levasolutions/qbcc-insurance-calculator/components/quote-template.tsx[0m:20:1]
+ [2m20[0m |   date = new Date() 
+ [2m21[0m | }: QuoteTemplateProps) {
+ [2m22[0m |   return (
+ [2m23[0m |     <div className="p-8 max-w-[210mm] mx-auto bg-white text-black h-full min-h-screen">
+    : [31;1m     ^^^[0m
+ [2m24[0m |         {/* Header */}
+ [2m25[0m |         <div className="flex justify-between items-start mb-12 border-b pb-6 border-gray-200">
+ [2m26[0m |           <div>
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/quote-template.tsx
+./app/estimate/[type]/[value]/page.tsx
+ GET /estimate/new-construction/300000 500 in 1602ms

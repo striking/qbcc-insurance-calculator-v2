@@ -1,16 +1,27 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { DM_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import GoogleAnalytics from "@/components/google-analytics"
 // import { GTM_ID } from "@/lib/gtm"
 
-const inter = Inter({ subsets: ["latin"] })
+const dmSans = DM_Sans({ subsets: ["latin"] })
 
 // Your Google Analytics Measurement ID
 const GA_MEASUREMENT_ID = "G-HFTV8CW3HR"
 const GTM_ID = "GTM-MBLZJ6T2"
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#1e1e2e" },
+  ],
+}
 
 export const metadata: Metadata = {
   title: "QBCC Home Warranty Insurance Calculator | Premium Estimator",
@@ -63,9 +74,6 @@ export default function RootLayout({
   return (
     <html lang="en-AU" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#1e1e2e" media="(prefers-color-scheme: dark)" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="format-detection" content="telephone=no" />
@@ -81,8 +89,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     `,
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "QBCC Home Warranty Insurance Calculator",
+              "url": "https://qbcc-calculator.vercel.app/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://qbcc-calculator.vercel.app/?value={search_term_string}",
+                "query-input": "required name=search_term_string"
+              },
+              "description": "Free calculator for Queensland Building and Construction Commission (QBCC) insurance premiums and QLeave levies.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "Leva Solutions",
+                "url": "https://levasolutions.com.au"
+              }
+            })
+          }}
+        />
       </head>
-      <body className={inter.className}>
+      <body className={dmSans.className}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

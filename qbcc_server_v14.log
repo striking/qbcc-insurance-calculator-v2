@@ -1,0 +1,24 @@
+
+> qbcc-calculator@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.16
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 748ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1198ms (1137 modules)
+ ⨯ components/calculator-form.tsx (8:35) @ useState
+ ⨯ ReferenceError: useState is not defined
+    at CalculatorForm (./components/calculator-form.tsx:18:37)
+digest: "82104948"
+[0m [90m  6 |[39m[0m
+[0m [90m  7 |[39m [36mexport[39m [36mfunction[39m [33mCalculatorForm[39m() {[0m
+[0m[31m[1m>[22m[39m[90m  8 |[39m   [36mconst[39m [workType[33m,[39m setWorkType] [33m=[39m useState([32m"new-construction"[39m)[0m
+[0m [90m    |[39m                                   [31m[1m^[22m[39m[0m
+[0m [90m  9 |[39m   [36mconst[39m [insurableValue[33m,[39m setInsurableValue] [33m=[39m useState([32m""[39m)[0m
+[0m [90m 10 |[39m   [36mconst[39m [units[33m,[39m setUnits] [33m=[39m useState([32m"1"[39m)[0m
+[0m [90m 11 |[39m   [36mconst[39m [isCalculating[33m,[39m setIsCalculating] [33m=[39m useState([36mfalse[39m)[0m
+ GET / 500 in 1490ms
+ ✓ Compiled in 306ms (570 modules)

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E3A5F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#152A45;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background House Shape -->
+  <path d="M256 32L32 224h48v256h352V224h48L256 32z" fill="url(#grad1)"/>
+  
+  <!-- Inner Shield/Calculator Area -->
+  <path d="M144 240h224v192H144z" fill="#ffffff"/>
+  
+  <!-- Calculator/Checkmark Elements (Orange) -->
+  <rect x="176" y="272" width="160" height="32" rx="4" fill="#FF6B35" />
+  <rect x="176" y="328" width="48" height="48" rx="4" fill="#1E3A5F" opacity="0.1" />
+  <rect x="248" y="328" width="48" height="48" rx="4" fill="#1E3A5F" opacity="0.1" />
+  <rect x="320" y="328" width="48" height="48" rx="4" fill="#FF6B35" />
+  
+  <!-- Small checkmark inside the orange button -->
+  <path d="M334 352l10 10 20-20" stroke="white" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

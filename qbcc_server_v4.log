@@ -1,0 +1,16 @@
+
+> qbcc-calculator@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.16
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 753ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1178ms (1174 modules)
+ GET / 200 in 1163ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/073896b09eaf3cf1.webpack.hot-update.json 404 in 1299ms
+ GET / 200 in 14ms
+ ✓ Compiled in 349ms (1172 modules)
