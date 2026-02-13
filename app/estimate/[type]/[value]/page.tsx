@@ -1,4 +1,5 @@
 import { QuoteTemplate } from "@/components/quote-template"
+import { EstimateLeadCapture } from "@/components/estimate-lead-capture"
 import { 
   calculateQLDHomeWarrantyPremium, 
   calculateMultipleDwellingsPremium, 
@@ -107,6 +108,16 @@ export default function EstimatePage({ params, searchParams }: Props) {
         units={units}
         premium={premium}
         qleave={qleave}
+      />
+      
+      <EstimateLeadCapture 
+        quoteData={{
+          workType: type,
+          insurableValue,
+          units,
+          premium,
+          qleave
+        }}
       />
       
       <div className="max-w-[210mm] mx-auto mt-8 text-center print:hidden">

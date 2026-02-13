@@ -5,6 +5,7 @@ import Link from "next/link"
 import { CalculatorForm } from "@/components/calculator-form"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Text } from "@/components/catalyst/text"
+import { RateNotificationBanner } from "@/components/rate-notification-banner"
 
 export default function Page() {
   // Schema.org JSON-LD structured data
@@ -65,6 +66,9 @@ export default function Page() {
               </div>
            </div>
         </header>
+
+        {/* Rate Notification Banner */}
+        <RateNotificationBanner />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
            <div className="max-w-5xl mx-auto">
