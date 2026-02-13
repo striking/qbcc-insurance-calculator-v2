@@ -8,6 +8,7 @@ import { Button } from "@/components/catalyst/button"
 import { Text } from "@/components/catalyst/text"
 import { EnvelopeIcon, XMarkIcon, CheckCircleIcon } from "@heroicons/react/24/outline"
 import { LeadCaptureRequest, ApiResponse } from "@/lib/types"
+import { track } from "@vercel/analytics"
 
 interface LeadCaptureModalProps {
   isOpen: boolean
@@ -31,6 +32,7 @@ export function LeadCaptureModal({ isOpen, onClose, quoteData }: LeadCaptureModa
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    track("email_signup")
     setIsSubmitting(true)
     setError("")
 

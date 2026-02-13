@@ -4,6 +4,7 @@ import { DM_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import GoogleAnalytics from "@/components/google-analytics"
+import { Analytics } from "@vercel/analytics/next"
 // import { GTM_ID } from "@/lib/gtm"
 
 const dmSans = DM_Sans({ subsets: ["latin"] })
@@ -126,6 +127,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {children}
         </ThemeProvider>
         <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
+        <Analytics />
       </body>
     </html>
   )

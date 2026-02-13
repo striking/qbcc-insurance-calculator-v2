@@ -18,6 +18,7 @@ import { PremiumBreakdown } from "@/components/premium-breakdown"
 import { QuoteTemplate } from "@/components/quote-template"
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
 import { ArrowPathIcon, CurrencyDollarIcon, CalculatorIcon, BuildingOffice2Icon, PrinterIcon, ShareIcon, EnvelopeIcon, XMarkIcon } from "@heroicons/react/24/outline"
+import { track } from "@vercel/analytics"
 
 // Australian locale for number formatting
 const AU_LOCALE = "en-AU"
@@ -47,6 +48,7 @@ export function CalculatorForm() {
 
   const handleCalculate = () => {
     setIsCalculating(true)
+    track("calculate")
     try {
       const value = Number.parseFloat(parseFormattedNumber(insurableValue))
       const numUnits = Number.parseInt(units)
@@ -122,10 +124,12 @@ export function CalculatorForm() {
   }
 
   const handlePrint = () => {
+    track("print_click")
     window.print();
   }
 
   const handleShare = () => {
+    track("share_click")
     if (!result) return
     const cleanValue = parseFormattedNumber(insurableValue)
     const url = `/estimate/${workType}/${cleanValue}?units=${units}`
@@ -133,6 +137,7 @@ export function CalculatorForm() {
   }
 
   const handleRelayClick = () => {
+    track("relay_cta_click")
     window.dispatchEvent(new CustomEvent("leva-relay-cta-click", {
       detail: {
         source: "calculator-results",
@@ -325,12 +330,26 @@ export function CalculatorForm() {
                                   </div>
                                   <div className="p-6 bg-leva-navy-deep rounded-b-xl border-t border-white/10">
                                       <div className="grid grid-cols-2 gap-3">
-                                         <Button className="w-full justify-center bg-leva-orange hover:bg-leva-orange-light text-white border-none text-xs px-2">
-                                             Pay QBCC
-                                         </Button>
-                                         <Button className="w-full justify-center bg-white/10 hover:bg-white/20 text-white border-none text-xs px-2">
-                                             Pay QLeave
-                                         </Button>
+                                         <a
+                                           href="https://my.qbcc.qld.gov.au"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           onClick={() => track("pay_qbcc_click")}
+                                         >
+                                           <Button className="w-full justify-center bg-leva-orange hover:bg-leva-orange-light text-white border-none text-xs px-2">
+                                               Pay QBCC
+                                           </Button>
+                                         </a>
+                                         <a
+                                           href="https://www.qleave.qld.gov.au"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           onClick={() => track("pay_qleave_click")}
+                                         >
+                                           <Button className="w-full justify-center bg-white/10 hover:bg-white/20 text-white border-none text-xs px-2">
+                                               Pay QLeave
+                                           </Button>
+                                         </a>
                                       </div>
                                       {result && (
                                         <div className="mt-3">
