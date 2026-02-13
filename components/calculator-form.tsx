@@ -16,7 +16,8 @@ import {
 } from "@/lib/premium-calculator"
 import { PremiumBreakdown } from "@/components/premium-breakdown"
 import { QuoteTemplate } from "@/components/quote-template"
-import { ArrowPathIcon, CurrencyDollarIcon, CalculatorIcon, BuildingOffice2Icon, PrinterIcon, ShareIcon } from "@heroicons/react/24/outline"
+import { LeadCaptureModal } from "@/components/lead-capture-modal"
+import { ArrowPathIcon, CurrencyDollarIcon, CalculatorIcon, BuildingOffice2Icon, PrinterIcon, ShareIcon, EnvelopeIcon } from "@heroicons/react/24/outline"
 
 // Australian locale for number formatting
 const AU_LOCALE = "en-AU"
@@ -27,6 +28,8 @@ export function CalculatorForm() {
   const [units, setUnits] = useState("1")
   const [isCalculating, setIsCalculating] = useState(false)
   const [result, setResult] = useState<{ premium: number, qleave: number, original: number, rounded: number } | null>(null)
+  const [showLeadModal, setShowLeadModal] = useState(false)
+  const [hasShownLeadModal, setHasShownLeadModal] = useState(false)
 
   // Format number with commas
   const formatNumberWithCommas = (value: string): string => {
@@ -82,6 +85,14 @@ export function CalculatorForm() {
         original: value,
         rounded: roundedValue
       })
+
+      // Show lead capture modal after first calculation (with a small delay for better UX)
+      if (!hasShownLeadModal && premium > 0) {
+        setTimeout(() => {
+          setShowLeadModal(true)
+          setHasShownLeadModal(true)
+        }, 1500)
+      }
     } catch (error) {
       console.error("Calculation error", error)
       setResult(null)
@@ -276,6 +287,17 @@ export function CalculatorForm() {
                                              Pay QLeave
                                          </Button>
                                       </div>
+                                      {result && (
+                                        <div className="mt-3">
+                                          <Button 
+                                            onClick={() => setShowLeadModal(true)}
+                                            className="w-full justify-center bg-emerald-600 hover:bg-emerald-500 text-white border-none text-xs px-2 flex items-center gap-2"
+                                          >
+                                            <EnvelopeIcon className="size-3" />
+                                            Email This Quote
+                                          </Button>
+                                        </div>
+                                      )}
                                       <div className="mt-4 text-center">
                                           <Text className="text-xs text-gray-400!">
                                               Insurance premiums based on QBCC 2020 Tables. QLeave levy verified against live government data.
@@ -296,6 +318,21 @@ export function CalculatorForm() {
           />
         )}
       </div>
+
+      {/* Lead Capture Modal */}
+      {result && (
+        <LeadCaptureModal
+          isOpen={showLeadModal}
+          onClose={() => setShowLeadModal(false)}
+          quoteData={{
+            workType,
+            insurableValue: result.original,
+            units: parseInt(units),
+            premium: result.premium,
+            qleave: result.qleave
+          }}
+        />
+      )}
     </>
   )
 }
