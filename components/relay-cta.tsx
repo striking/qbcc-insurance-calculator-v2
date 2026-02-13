@@ -1,7 +1,10 @@
 "use client"
 
+import { track } from "@vercel/analytics"
+
 export function RelayCta({ source }: { source: string }) {
   const handleClick = () => {
+    track("relay_cta_click")
     window.dispatchEvent(
       new CustomEvent("leva-relay-cta-click", {
         detail: {
