@@ -17,7 +17,7 @@ import {
 import { PremiumBreakdown } from "@/components/premium-breakdown"
 import { QuoteTemplate } from "@/components/quote-template"
 import { LeadCaptureModal } from "@/components/lead-capture-modal"
-import { ArrowPathIcon, CurrencyDollarIcon, CalculatorIcon, BuildingOffice2Icon, PrinterIcon, ShareIcon, EnvelopeIcon } from "@heroicons/react/24/outline"
+import { ArrowPathIcon, CurrencyDollarIcon, CalculatorIcon, BuildingOffice2Icon, PrinterIcon, ShareIcon, EnvelopeIcon, XMarkIcon } from "@heroicons/react/24/outline"
 
 // Australian locale for number formatting
 const AU_LOCALE = "en-AU"
@@ -30,6 +30,7 @@ export function CalculatorForm() {
   const [result, setResult] = useState<{ premium: number, qleave: number, original: number, rounded: number } | null>(null)
   const [showLeadModal, setShowLeadModal] = useState(false)
   const [hasShownLeadModal, setHasShownLeadModal] = useState(false)
+  const [showRelayCta, setShowRelayCta] = useState(true)
 
   // Format number with commas
   const formatNumberWithCommas = (value: string): string => {
@@ -131,6 +132,15 @@ export function CalculatorForm() {
     window.open(url, '_blank')
   }
 
+  const handleRelayClick = () => {
+    window.dispatchEvent(new CustomEvent("leva-relay-cta-click", {
+      detail: {
+        source: "calculator-results",
+        workType
+      }
+    }))
+  }
+
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 print:hidden">
@@ -210,7 +220,7 @@ export function CalculatorForm() {
 
           {/* Breakdown Section - Only show if we have a result */}
           {result && (
-              <div className="mt-6">
+              <div className="mt-6 space-y-4">
                  <PremiumBreakdown 
                     type={workType as "new-construction" | "renovation"}
                     originalValue={result.original}
@@ -218,6 +228,41 @@ export function CalculatorForm() {
                     units={parseInt(units)}
                     premium={result.premium}
                  />
+
+                 {showRelayCta && (
+                  <Card className="border-leva-navy/15 bg-leva-navy/[0.03]">
+                    <CardContent className="p-4 md:p-5">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <Subheading level={3} className="text-leva-navy">Never miss inbound jobs</Subheading>
+                          <Text className="mt-2 text-sm leading-6 text-gray-700">
+                            You&apos;re a QLD builder? While you&apos;re on site, your phone&apos;s still ringing. Leva Relay is an AI receptionist that answers calls, books jobs, and sends quotes — so you never miss work.
+                          </Text>
+                          <a
+                            href="https://levasolutions.com.au/relay"
+                            target="_blank"
+                            rel="noreferrer"
+                            onClick={handleRelayClick}
+                            data-track-event="leva-relay-cta-click"
+                            data-track-source="calculator-results"
+                            className="mt-3 inline-flex items-center text-sm font-semibold text-leva-navy hover:text-leva-navy-light"
+                          >
+                            Try it free →
+                          </a>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => setShowRelayCta(false)}
+                          aria-label="Dismiss Leva Relay message"
+                          className="shrink-0 rounded-md p-1 text-gray-500 hover:bg-black/5 hover:text-gray-700"
+                        >
+                          <XMarkIcon className="size-4" />
+                        </button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                 )}
               </div>
           )}
         </div>
