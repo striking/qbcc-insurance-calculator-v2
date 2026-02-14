@@ -306,6 +306,38 @@ export function CalculatorForm() {
                                   </div>                              </Card>        </div>
       </div>
 
+      {/* QBCC Rate Change Notification CTA */}
+      {result && (
+        <div className="mt-8">
+          <div className="bg-white dark:bg-zinc-900 rounded-xl p-6 border border-zinc-200 dark:border-zinc-800 shadow-sm max-w-md mx-auto">
+            <div className="text-center">
+              <div className="flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full mx-auto mb-4">
+                <EnvelopeIcon className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <Heading level={4} className="text-lg font-semibold text-leva-navy dark:text-white mb-2">
+                Get Rate Change Alerts
+              </Heading>
+              <Text className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                Get notified when QBCC rates change so you can update your quotes
+              </Text>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Input 
+                  type="email" 
+                  placeholder="your@email.com" 
+                  className="flex-1 text-sm"
+                />
+                <Button className="bg-leva-orange hover:bg-leva-navy text-white text-sm whitespace-nowrap">
+                  Notify Me
+                </Button>
+              </div>
+              <Text className="text-xs text-gray-500 mt-2">
+                No spam. Unsubscribe anytime.
+              </Text>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Print Layout */}
       <div className="hidden print:block">
         {result && (

@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp": "2026-02-13T23:18:23.138Z",
+    "lead": {
+      "email": "test@example.com",
+      "timestamp": "2026-02-13T23:18:23.137Z",
+      "source": "post-calculation",
+      "quoteData": {
+        "workType": "new-construction",
+        "insurableValue": 300000,
+        "units": 1,
+        "premium": 2102.1,
+        "qleave": 1568.18,
+        "total": 3670.2799999999997
+      }
+    },
+    "subject": "New QBCC Calculator Lead: test@example.com",
+    "message": "\nNew lead captured from QBCC Insurance Calculator:\n\nEmail: test@example.com\nName: Not provided\nPhone: Not provided\nSource: post-calculation\n\nQuote Details:\n- Work Type: new-construction\n- Insurable Value: $300,000\n- Units: 1\n- QBCC Premium: $2102.10\n- QLeave Levy: $1568.18\n- Total: $3670.28\n\nCaptured at: 2026-02-13T23:18:23.137Z\n    "
+  }
+]
