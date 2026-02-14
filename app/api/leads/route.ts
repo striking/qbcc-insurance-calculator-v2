@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import fs from 'fs/promises'
 import path from 'path'
+import { Resend } from 'resend'
 import { LeadCaptureData, LeadCaptureRequest, ApiResponse } from '@/lib/types'
+import { buildQuoteEmailHtml } from '@/emails/quote-email'
+import { buildLeadNotificationHtml } from '@/emails/lead-notification'
 
 const LEADS_FILE = path.join(process.cwd(), 'data', 'leads.json')
+const NOTIFICATIONS_FILE = path.join(process.cwd(), 'data', 'notifications.json')
+const EMAIL_FROM = 'QBCC Calculator <noreply@grapl.ai>'
 
 // Ensure data directory exists
 async function ensureDataDirectory() {
@@ -37,11 +42,8 @@ function isValidEmail(email: string): boolean {
   return emailRegex.test(email)
 }
 
-// Send notification email (placeholder - could integrate with actual email service)
-async function sendNotificationEmail(lead: LeadCaptureData) {
-  // For now, just log to console and a notification file
-  console.log(`New lead captured: ${lead.email}`)
-  
+// Keep JSON-based notification logging as fallback/audit trail
+async function writeNotificationLog(lead: LeadCaptureData) {
   const notificationData = {
     timestamp: new Date().toISOString(),
     lead,
@@ -63,39 +65,84 @@ Quote Details:
 - Total: $${lead.quoteData.total.toFixed(2)}
 
 Captured at: ${lead.timestamp}
-    `
+    `,
   }
-  
-  // Write to notifications file for Chris to review
-  const notificationsFile = path.join(process.cwd(), 'data', 'notifications.json')
+
   try {
-    const existingNotifications = JSON.parse(await fs.readFile(notificationsFile, 'utf-8'))
+    const existingNotifications = JSON.parse(await fs.readFile(NOTIFICATIONS_FILE, 'utf-8'))
     existingNotifications.push(notificationData)
-    await fs.writeFile(notificationsFile, JSON.stringify(existingNotifications, null, 2))
+    await fs.writeFile(NOTIFICATIONS_FILE, JSON.stringify(existingNotifications, null, 2))
   } catch {
-    await fs.writeFile(notificationsFile, JSON.stringify([notificationData], null, 2))
+    await fs.writeFile(NOTIFICATIONS_FILE, JSON.stringify([notificationData], null, 2))
+  }
+}
+
+async function sendLeadEmails(lead: LeadCaptureData) {
+  const apiKey = process.env.RESEND_API_KEY
+  const notificationEmail = process.env.NOTIFICATION_EMAIL
+
+  if (!apiKey) {
+    console.warn('[leads] RESEND_API_KEY is not set. Skipping email send and continuing with JSON storage only.')
+    return
+  }
+
+  const resend = new Resend(apiKey)
+
+  try {
+    const userHtml = buildQuoteEmailHtml(lead)
+    await resend.emails.send({
+      from: EMAIL_FROM,
+      to: [lead.email],
+      subject: 'Your QBCC Insurance Quote',
+      html: userHtml,
+    })
+  } catch (error) {
+    console.error('[leads] Failed to send quote email to user:', error)
+  }
+
+  if (!notificationEmail) {
+    console.warn('[leads] NOTIFICATION_EMAIL is not set. Skipping internal lead notification email.')
+    return
+  }
+
+  try {
+    const notificationHtml = buildLeadNotificationHtml(lead)
+    await resend.emails.send({
+      from: EMAIL_FROM,
+      to: [notificationEmail],
+      subject: `New QBCC Calculator Lead: ${lead.email}`,
+      html: notificationHtml,
+    })
+  } catch (error) {
+    console.error('[leads] Failed to send lead notification email:', error)
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: LeadCaptureRequest = await request.json()
-    
+
     // Validate required fields
     if (!body.email || !isValidEmail(body.email)) {
-      return NextResponse.json<ApiResponse>({
-        success: false,
-        error: 'Valid email is required'
-      }, { status: 400 })
+      return NextResponse.json<ApiResponse>(
+        {
+          success: false,
+          error: 'Valid email is required',
+        },
+        { status: 400 }
+      )
     }
-    
+
     if (!body.source) {
-      return NextResponse.json<ApiResponse>({
-        success: false,
-        error: 'Source is required'
-      }, { status: 400 })
+      return NextResponse.json<ApiResponse>(
+        {
+          success: false,
+          error: 'Source is required',
+        },
+        { status: 400 }
+      )
     }
-    
+
     // Create lead data
     const leadData: LeadCaptureData = {
       email: body.email.toLowerCase().trim(),
@@ -109,29 +156,37 @@ export async function POST(request: NextRequest) {
         units: body.units || 1,
         premium: body.premium || 0,
         qleave: body.qleave || 0,
-        total: (body.premium || 0) + (body.qleave || 0)
-      }
+        total: (body.premium || 0) + (body.qleave || 0),
+      },
     }
-    
-    // Read existing leads, add new one, and save
+
+    // Save lead to JSON storage first (primary persistence)
     const leads = await readLeads()
     leads.push(leadData)
     await writeLeads(leads)
-    
-    // Send notification (async, don't wait)
-    sendNotificationEmail(leadData).catch(console.error)
-    
+
+    // Keep local notification log + send emails asynchronously
+    writeNotificationLog(leadData).catch((error) => {
+      console.error('[leads] Failed to write notification log:', error)
+    })
+
+    sendLeadEmails(leadData).catch((error) => {
+      console.error('[leads] Unexpected error while sending emails:', error)
+    })
+
     return NextResponse.json<ApiResponse>({
       success: true,
-      data: { message: 'Lead captured successfully' }
+      data: { message: 'Lead captured successfully' },
     })
-    
   } catch (error) {
     console.error('Error capturing lead:', error)
-    return NextResponse.json<ApiResponse>({
-      success: false,
-      error: 'Internal server error'
-    }, { status: 500 })
+    return NextResponse.json<ApiResponse>(
+      {
+        success: false,
+        error: 'Internal server error',
+      },
+      { status: 500 }
+    )
   }
 }
 
@@ -141,13 +196,16 @@ export async function GET(request: NextRequest) {
     const leads = await readLeads()
     return NextResponse.json<ApiResponse>({
       success: true,
-      data: leads
+      data: leads,
     })
   } catch (error) {
     console.error('Error reading leads:', error)
-    return NextResponse.json<ApiResponse>({
-      success: false,
-      error: 'Internal server error'
-    }, { status: 500 })
+    return NextResponse.json<ApiResponse>(
+      {
+        success: false,
+        error: 'Internal server error',
+      },
+      { status: 500 }
+    )
   }
 }
