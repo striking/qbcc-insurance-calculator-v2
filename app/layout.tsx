@@ -112,7 +112,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             })
           }}
         />
-      </head>
+          <meta name="google-site-verification" content="fQIteIi5biuA9VgwHV27KkUghf_rHmivHf_6o-tm7DI" />
+</head>
       <body className={dmSans.className}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
