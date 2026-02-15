@@ -156,14 +156,14 @@ export default function GuidePageClient({ params }: ClientProps) {
                   name: "QBCC Home Warranty Insurance Calculator",
                   logo: {
                     "@type": "ImageObject",
-                    url: "https://qbcc-calculator.vercel.app/logo.png",
+                    url: "https://qbccinsurancecalculator.com.au/logo.png",
                   },
                 },
                 datePublished: guide.publishedDate,
                 dateModified: guide.updatedDate || guide.publishedDate,
                 mainEntityOfPage: {
                   "@type": "WebPage",
-                  "@id": `https://qbcc-calculator.vercel.app/guides/${params.slug}`,
+                  "@id": `https://qbccinsurancecalculator.com.au/guides/${params.slug}`,
                 },
               }),
             }}
@@ -187,12 +187,12 @@ export default function GuidePageClient({ params }: ClientProps) {
                     .share({
                       title: guide.title,
                       text: guide.description,
-                      url: `https://qbcc-calculator.vercel.app/guides/${params.slug}`,
+                      url: `https://qbccinsurancecalculator.com.au/guides/${params.slug}`,
                     })
                     .catch((err) => console.error("Error sharing:", err))
                 } else {
                   // Fallback for browsers that don't support the Web Share API
-                  const url = `https://qbcc-calculator.vercel.app/guides/${params.slug}`
+                  const url = `https://qbccinsurancecalculator.com.au/guides/${params.slug}`
                   navigator.clipboard
                     .writeText(url)
                     .then(() => alert("Link copied to clipboard!"))

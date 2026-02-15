@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_AU",
-    url: "https://qbcc-calculator.vercel.app/",
+    url: "https://qbccinsurancecalculator.com.au/",
     title: "QBCC Home Warranty Insurance Calculator | Premium Estimator",
     description:
       "Calculate QBCC home warranty insurance premiums for new construction and renovations based on the July 2020 premium table.",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://qbcc-calculator.vercel.app/",
+    canonical: "https://qbccinsurancecalculator.com.au/",
   },
     generator: 'v0.app'
 }
@@ -97,10 +97,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "QBCC Home Warranty Insurance Calculator",
-              "url": "https://qbcc-calculator.vercel.app/",
+              "url": "https://qbccinsurancecalculator.com.au/",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://qbcc-calculator.vercel.app/?value={search_term_string}",
+                "target": "https://qbccinsurancecalculator.com.au/?value={search_term_string}",
                 "query-input": "required name=search_term_string"
               },
               "description": "Free calculator for Queensland Building and Construction Commission (QBCC) insurance premiums and QLeave levies.",

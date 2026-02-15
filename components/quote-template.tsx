@@ -29,7 +29,7 @@ export function QuoteTemplate({
           </div>
           <div className="text-right">
             <div className="text-sm text-gray-400">Generated via</div>
-            <a href="https://www.qbccinsurancecalculator.com.au" className="text-sm font-medium text-leva-navy hover:underline">
+            <a href="https://qbccinsurancecalculator.com.au" className="text-sm font-medium text-leva-navy hover:underline">
               qbccinsurancecalculator.com.au
             </a>
             <div className="text-sm text-gray-500 mt-2">Date: {date.toLocaleDateString()}</div>

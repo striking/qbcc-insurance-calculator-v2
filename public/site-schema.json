@@ -2,10 +2,10 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "QBCC Home Warranty Insurance Calculator",
-  "url": "https://qbcc-calculator.vercel.app/",
+  "url": "https://qbccinsurancecalculator.com.au/",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://qbcc-calculator.vercel.app/?value={search_term_string}",
+    "target": "https://qbccinsurancecalculator.com.au/?value={search_term_string}",
     "query-input": "required name=search_term_string"
   },
   "description": "Free calculator for Queensland Building and Construction Commission (QBCC) insurance premiums and QLeave levies.",

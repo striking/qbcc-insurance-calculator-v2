@@ -8,4 +8,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://qbcc-calculator.vercel.app/sitemap.xml
+Sitemap: https://qbccinsurancecalculator.com.au/sitemap.xml
