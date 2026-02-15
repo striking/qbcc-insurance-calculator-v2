@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-const BASE_URL = 'https://qbcc-calculator.vercel.app'
+const BASE_URL = 'https://qbccinsurancecalculator.com.au'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const commonEstimates = [

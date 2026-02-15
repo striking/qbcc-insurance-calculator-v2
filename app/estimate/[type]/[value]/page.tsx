@@ -61,7 +61,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
         follow: true,
     },
     alternates: {
-      canonical: `https://qbcc-calculator.vercel.app/estimate/${type}/${value}`,
+      canonical: `https://qbccinsurancecalculator.com.au/estimate/${type}/${value}`,
     },
   }
 }
