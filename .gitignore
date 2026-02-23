@@ -23,6 +23,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# runtime data files
+/data/*.json
+!/data/*.example.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

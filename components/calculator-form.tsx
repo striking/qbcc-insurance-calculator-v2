@@ -30,6 +30,9 @@ export function CalculatorForm() {
   const [result, setResult] = useState<{ premium: number, qleave: number, original: number, rounded: number } | null>(null)
   const [showLeadModal, setShowLeadModal] = useState(false)
   const [hasShownLeadModal, setHasShownLeadModal] = useState(false)
+  const [notificationEmail, setNotificationEmail] = useState("")
+  const [isNotificationSubmitting, setIsNotificationSubmitting] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState<string | null>(null)
 
   // Format number with commas
   const formatNumberWithCommas = (value: string): string => {
@@ -129,6 +132,48 @@ export function CalculatorForm() {
     const cleanValue = parseFormattedNumber(insurableValue)
     const url = `/estimate/${workType}/${cleanValue}?units=${units}`
     window.open(url, '_blank')
+  }
+
+  const handleNotificationSignup = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const email = notificationEmail.trim().toLowerCase()
+
+    if (!email) {
+      setNotificationMessage('Please enter your email address.')
+      return
+    }
+
+    setIsNotificationSubmitting(true)
+    setNotificationMessage(null)
+
+    try {
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          source: 'rate-notification',
+          workType,
+          insurableValue: result?.original ?? 0,
+          units: Number.parseInt(units) || 1,
+          premium: result?.premium ?? 0,
+          qleave: result?.qleave ?? 0,
+        }),
+      })
+
+      if (!response.ok) {
+        setNotificationMessage('Could not subscribe right now. Please try again.')
+        return
+      }
+
+      setNotificationMessage('Thanks — we will notify you about future rate changes.')
+      setNotificationEmail('')
+    } catch (error) {
+      console.error('Rate notification signup failed', error)
+      setNotificationMessage('Could not subscribe right now. Please try again.')
+    } finally {
+      setIsNotificationSubmitting(false)
+    }
   }
 
   return (
@@ -320,18 +365,25 @@ export function CalculatorForm() {
               <Text className="text-sm text-gray-600 dark:text-gray-300 mb-4">
                 Get notified when QBCC rates change so you can update your quotes
               </Text>
-              <div className="flex flex-col sm:flex-row gap-3">
+              <form onSubmit={handleNotificationSignup} className="flex flex-col sm:flex-row gap-3">
                 <Input 
                   type="email" 
                   placeholder="your@email.com" 
                   className="flex-1 text-sm"
+                  value={notificationEmail}
+                  onChange={(e) => setNotificationEmail(e.target.value)}
+                  required
                 />
-                <Button className="bg-leva-orange hover:bg-leva-navy text-white text-sm whitespace-nowrap">
-                  Notify Me
+                <Button
+                  type="submit"
+                  disabled={isNotificationSubmitting}
+                  className="bg-leva-orange hover:bg-leva-navy text-white text-sm whitespace-nowrap"
+                >
+                  {isNotificationSubmitting ? 'Saving...' : 'Notify Me'}
                 </Button>
-              </div>
+              </form>
               <Text className="text-xs text-gray-500 mt-2">
-                No spam. Unsubscribe anytime.
+                {notificationMessage || 'No spam. Unsubscribe anytime.'}
               </Text>
             </div>
           </div>
