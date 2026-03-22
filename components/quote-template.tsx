@@ -72,7 +72,7 @@ export function QuoteTemplate({
             <tbody className="text-sm">
               <tr className="border-b border-gray-100">
                 <td className="py-4">QBCC Home Warranty Insurance</td>
-                <td className="py-4 text-gray-500">Based on July 2020 Premium Table</td>
+                <td className="py-4 text-gray-500">QBCC Premium Table (eff. 1 Jul 2020, verified Mar 2026)</td>
                 <td className="py-4 text-right font-medium">
                   {`$${premium.toLocaleString(AU_LOCALE, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
                 </td>
@@ -107,8 +107,8 @@ export function QuoteTemplate({
         {/* Disclaimer */}
         <div className="mt-auto border-t border-gray-200 pt-8">
           <p className="text-xs text-gray-400 leading-relaxed text-center">
-            This estimate is calculated using the official QBCC Premium Tables (July 2020). 
-            While we strive for accuracy, please verify final amounts with the Queensland Building and Construction Commission (QBCC) 
+            This estimate is calculated using the official QBCC Premium Tables (effective 1 July 2020, verified current as of March 2026).
+            While we strive for accuracy, please verify final amounts with the Queensland Building and Construction Commission (QBCC)
             and QLeave before payment.
           </p>
           <div className="flex justify-center items-center mt-6 gap-2">

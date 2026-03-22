@@ -470,7 +470,7 @@ export function CalculatorForm() {
                                       )}
                                       <div className="mt-4 text-center">
                                           <Text className="text-xs text-gray-400!">
-                                              Insurance premiums based on QBCC 2020 Tables. QLeave levy verified against live government data.
+                                              QBCC premium rates effective 1 July 2020, verified current March 2026. QLeave levy verified against live government data.
                                           </Text>
                                       </div>
                                   </div>                              </Card>        </div>

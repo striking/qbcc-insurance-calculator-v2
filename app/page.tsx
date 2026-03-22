@@ -21,12 +21,12 @@ export default function Page() {
       priceCurrency: "AUD",
     },
     description:
-      "Calculate QBCC home warranty insurance premiums for new construction and renovations based on the July 2020 premium table.",
+      "Calculate QBCC home warranty insurance premiums for new construction and renovations based on current QBCC premium rates (effective 1 July 2020, verified current as of March 2026).",
     featureList: [
       "Calculate premiums for new construction",
       "Calculate premiums for renovations and additions",
       "Support for multiple dwelling calculations",
-      "Based on July 2020 QBCC premium rates",
+      "Based on current QBCC premium rates (effective 1 July 2020, verified March 2026)",
     ],
     keywords:
       "QBCC, home warranty, insurance calculator, Queensland Building and Construction Commission, premium calculator",
@@ -113,6 +113,9 @@ export default function Page() {
              </div>
              <Text className="text-xs text-gray-400 mt-4">
                 Not affiliated with the Queensland Building and Construction Commission.
+             </Text>
+             <Text className="text-xs text-gray-400 mt-2">
+                Premium rates effective 1 July 2020 — verified current as of March 2026.
              </Text>
            </div>
         </footer>

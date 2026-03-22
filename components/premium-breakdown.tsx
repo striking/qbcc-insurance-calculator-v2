@@ -162,8 +162,7 @@ export function PremiumBreakdown({ type, originalValue, roundedValue, units, pre
             <div>
               <h4 className="font-semibold mb-1">Standard Calculation</h4>
               <p>
-                For values between $3,300 and $3,000,000, premiums are calculated based on the QBCC premium table (July
-                2020).
+                For values between $3,300 and $3,000,000, premiums are calculated based on the QBCC premium table (effective 1 July 2020, verified current as of March 2026).
               </p>
             </div>
 

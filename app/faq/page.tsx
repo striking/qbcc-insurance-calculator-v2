@@ -73,7 +73,7 @@ export default function FAQPage() {
             <AccordionTrigger>How accurate is this calculator?</AccordionTrigger>
             <AccordionContent>
               <p className="mb-4">
-                This calculator uses the official QBCC premium tables (current as of July 2020) to calculate insurance
+                This calculator uses the official QBCC premium tables (effective 1 July 2020, verified current as of March 2026) to calculate insurance
                 premiums. While we strive for accuracy, this tool is provided for informational purposes only.
               </p>
               <p className="mb-4">For the most accurate and up-to-date premium calculations, we recommend:</p>
