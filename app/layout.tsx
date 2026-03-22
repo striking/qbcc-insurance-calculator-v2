@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import GoogleAnalytics from "@/components/google-analytics"
 import { Analytics } from "@vercel/analytics/react"
+import { PostHogProvider } from "@/components/PostHogProvider"
 // import { GTM_ID } from "@/lib/gtm"
 
 const dmSans = DM_Sans({ subsets: ["latin"] })
@@ -124,9 +125,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+        <PostHogProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </PostHogProvider>
         <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
         <Analytics />
       </body>
